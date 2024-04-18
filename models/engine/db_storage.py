@@ -29,9 +29,10 @@ class DBStorage:
         from models.state import State
         from models.city import City
         from models.user import User
+        from models.place import Place
 
         classes = {
-            'State': State, 'City': City, 'User': User
+            'State': State, 'City': City, 'User': User, 'Place': Place
         }
 
         if cls:
@@ -81,6 +82,7 @@ class DBStorage:
         from models.state import State
         from models.city import City
         from models.user import User
+        from models.place import Place
 
         from sqlalchemy.orm import scoped_session, sessionmaker
 
