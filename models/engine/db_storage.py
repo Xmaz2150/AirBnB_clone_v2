@@ -38,7 +38,7 @@ class DBStorage:
         }
 
         if cls:
-            query = self.__session.query(classes[cls]).all()
+            query = self.__session.query(cls).all()
             dicts = {}
             new_dict = {}
 
@@ -94,3 +94,7 @@ class DBStorage:
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
+
+    def close(self):
+        """ Removes private session """
+        self.__session.close()

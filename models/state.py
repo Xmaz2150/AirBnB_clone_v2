@@ -3,6 +3,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+import os
 
 
 class State(BaseModel, Base):
@@ -12,16 +13,17 @@ class State(BaseModel, Base):
     name = Column(String(128), nullable=False)
     cities = relationship("City", backref="state", cascade="all, delete")
 
-    @property
-    def cities(self):
-        """ Getter to return list of City instances from storage """
-        from models import storage
-        from models.city import City
+    if os.getenv('HBNB_TYPE_STORAGE') != 'db':
+        @property
+        def cities(self):
+            """ Getter to return list of City instances from storage """
+            from models import storage
+            from models.city import City
 
-        cities_list = []
+            cities_list = []
 
-        for city in storage.all(City).values():
-            if city.state_id == self.id:
-                cities_list.append(city)
+            for city in storage.all(City).values():
+                if city.state_id == self.id:
+                    cities_list.append(city)
 
-        return cities_list
+            return cities_list
