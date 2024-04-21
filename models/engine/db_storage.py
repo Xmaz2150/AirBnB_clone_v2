@@ -43,8 +43,6 @@ class DBStorage:
             new_dict = {}
 
             for obj in query:
-                if obj._sa_instance_state:
-                    delattr(obj, '_sa_instance_state')
                 key = obj.__class__.__name__ + "." + str(obj.id)
                 new_dict[key] = obj
                 dicts[key] = obj
@@ -58,8 +56,6 @@ class DBStorage:
             new_dict = {}
 
             for obj in query:
-                if obj._sa_instance_state:
-                    delattr(obj, '_sa_instance_state')
                 key = obj.__class__.__name__ + "." + str(obj.id)
                 new_dict[key] = obj
                 dicts[key] = obj
