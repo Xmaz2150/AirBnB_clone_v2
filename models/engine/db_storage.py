@@ -38,7 +38,7 @@ class DBStorage:
         }
 
         if cls:
-            query = self.__session.query(cls).all()
+            query = self.__session.query(classes[cls]).all()
             dicts = {}
             new_dict = {}
 
