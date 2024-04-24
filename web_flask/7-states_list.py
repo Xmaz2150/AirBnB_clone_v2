@@ -10,7 +10,6 @@ from werkzeug.exceptions import NotFound
 
 app = Flask(__name__)
 
-objs = storage.all('State')
 
 
 @app.teardown_appcontext
@@ -21,6 +20,7 @@ def cleanup(exception):
 @app.route('/states_list', strict_slashes=False)
 def states_list():
     """ returns page with list of states """
+    objs = storage.all(State)
     states = []
     for obj_id, obj in objs.items():
             states.append(obj)

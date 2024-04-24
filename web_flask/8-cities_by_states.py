@@ -5,11 +5,12 @@ simple Flask web app
 
 from flask import Flask, render_template, redirect, url_for
 from models import storage
+from models.state import State
 from werkzeug.exceptions import NotFound
 
 app = Flask(__name__)
 
-objs = storage.all('State')
+objs = storage.all(State)
 
 
 @app.teardown_appcontext
